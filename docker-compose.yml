@@ -1,0 +1,29 @@
+version: "3.7"
+services:
+    graphql:
+      build:
+        context: "."
+      ports: ["4000:4000"]
+      depends_on:
+        - mysql
+      networks:
+        - graphql-network
+      volumes: 
+        - ./:/project
+      tty: true
+    mysql: 
+      image: "mysql:5.7"
+      environment:
+        MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+        MYSQL_DATABASE: "graphql_database"
+        MYQSL_USER: "root"
+        MYSQL_PASSWORD: "rootroot"
+      ports: ["3306:3306"]
+      networks:
+        - graphql-network
+
+networks:
+  graphql-network:
+
+
+

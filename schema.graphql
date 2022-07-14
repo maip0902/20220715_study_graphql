@@ -1,0 +1,31 @@
+type Query {
+    device: [Device]
+    payment: [Payment]
+    paymentItem: [PaymentItem]
+}
+
+type Mutation {
+    createDevice(name: String, serial: String): Device
+    createPayment(deviceId: Int, paymentItemId: Int): Payment
+    createPaymentItem(price: Int, name: String): PaymentItem
+}
+
+type Device {
+    id: ID!
+    serial: String!
+    name: String
+    payments: [Payment]
+}
+
+type Payment {
+    id: ID!
+    device: Device
+    paymentItem: PaymentItem
+}
+
+type PaymentItem {
+    id: ID!
+    price: String!
+    name: String!
+    payments: [Payment]
+}
